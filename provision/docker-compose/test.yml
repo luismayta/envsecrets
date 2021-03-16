@@ -1,0 +1,11 @@
+# Docker Compose
+# https://docs.docker.com/compose/
+#
+# Usage: test up
+
+services:
+  app:
+    image: luismayta-envsecrets-app-test
+    build:
+      args:
+        stage: test
