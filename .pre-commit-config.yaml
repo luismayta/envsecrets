@@ -95,6 +95,8 @@ repos:
       - id: validate-toml
       - id: no-go-testing
       - id: golangci-lint
+        args:
+          - --config=.github/linters/.golangci.yml
   - repo: https://github.com/shellcheck-py/shellcheck-py
     rev: v0.7.1.1
     hooks:

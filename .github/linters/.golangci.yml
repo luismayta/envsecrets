@@ -1,0 +1,50 @@
+run:
+  skip-dirs:
+    - .gen
+    - node_modules
+
+  skip-files:
+    - ".*_gen\\.go$"
+    - ".resolvers\\.go$"
+
+linters-settings:
+  golint:
+    min-confidence: 0.1
+  goimports:
+    local-prefixes: github.com/luismayta/envsecrets
+  linters-settings.misspell:
+    locale: 'US'
+    ignore-words:
+      - listend
+      - analyses
+      - cancelling
+linters:
+  enable-all: true
+  disable:
+    - funlen
+    - maligned
+    - wsl
+    - gomnd
+    - testpackage
+    - goerr113
+
+    # Drives todos nuts
+    - godox
+
+output:
+  format: colored-line-number
+
+issues:
+  exclude-rules:
+    - path: _test\.go
+      linters:
+        - gocyclo
+        - dupl
+        - gochecknoglobals
+        - gochecknoinits
+    - path: cmd/
+      linters:
+        - gocyclo
+        - dupl
+        - gochecknoglobals
+        - gochecknoinits
