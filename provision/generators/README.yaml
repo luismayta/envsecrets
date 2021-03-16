@@ -1,0 +1,36 @@
+---
+#
+# This is the canonical configuration for the `README.md`
+# Run `make readme` to rebuild the `README.md`
+#
+
+# Name of this project
+name: envsecrets
+
+email:
+  support: support@hadenlabs.com
+
+# Logo for this project
+#logo: docs/logo.png
+
+# License of this project
+license: 'MIT'
+
+# Canonical GitHub repo
+github_repo: luismayta/envsecrets
+
+# Badges to display
+badges:
+  - name: Lint
+    image: https://github.com/luismayta/envsecrets/actions/workflows/lint.yml/badge.svg?branch=develop
+    url: https://github.com/luismayta/envsecrets/actions
+  - name: Issues
+    image: https://img.shields.io/github/issues/luismayta/envsecrets.svg
+    url: https://github.com/luismayta/envsecrets/issues
+  - name: Latest Release
+    image: https://img.shields.io/github/release/luismayta/envsecrets.svg
+    url: https://github.com/luismayta/envsecrets/releases
+
+# Short description of this project
+description: |-
+  envsecrets load and set env to terminal.
