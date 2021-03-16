@@ -38,7 +38,7 @@ TEAM := hadenlabs
 REPOSITORY_DOMAIN:=github.com
 REPOSITORY_OWNER:=${TEAM}
 AWS_VAULT ?= ${TEAM}
-PROJECT := payment
+PROJECT := envsecrets
 
 # Compilation variables
 PROJECT_BUILD_SRCS = $(shell find ./ -type f -name '*.go' | grep -v '/vendor/' | sort | uniq)
@@ -93,7 +93,6 @@ help:
 	@echo '    readme                    build README'
 	@echo ''
 	@make alias.help
-	@make app.help
 	@make docker.help
 	@make docs.help
 	@make test.help
@@ -115,6 +114,7 @@ setup:
 	make python.precommit
 	@cp -rf provision/git/hooks/prepare-commit-msg .git/hooks/
 	@[ -e ".env" ] || cp -rf .env.example .env
+	make go.setup
 	make yarn.setup
 	make git.setup
 	@echo ${MESSAGE_HAPPY}
