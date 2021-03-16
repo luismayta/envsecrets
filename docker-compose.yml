@@ -1,0 +1,27 @@
+# Docker Compose
+# https://docs.docker.com/compose/
+# Usage: docker-compose up
+---
+version: '3.7'
+
+services:
+  app:
+    ports:
+      - '8080:8080'
+    build:
+      context: .
+      dockerfile: provision/docker/app/Dockerfile
+    volumes:
+      - .:/usr/src/github.com/luismayta/envsecrets
+    env_file:
+      - .env
+
+  builder:
+    environment: *environment
+    build:
+      context: .
+      dockerfile: provision/docker/builder/Dockerfile
+    volumes:
+      - .:/usr/src/github.com/luismayta/envsecrets
+    env_file:
+      - .env
