@@ -1,9 +1,17 @@
 # go
-.PHONY: go.help
+
+GOLANGCI_VERSION ?= 1.39.0
+
+GOPATH	= $(shell go env GOPATH)
+GOBIN	= $(GOPATH)/bin
+
+GO_FILES = $(shell find ./ -type f -name '*.go' | grep -v '/vendor/' | sort -u)
 
 # Bin variables
 GOLANGCI-LINT = $(GOBIN)/golangci-lint
 
+## show help commands
+.PHONY: go.help
 go.help:
 	@echo '    go:'
 	@echo ''
@@ -16,6 +24,8 @@ go.help:
 	@echo '        go.build           build application'
 	@echo ''
 
+## show help
+.PHONY: go
 go:
 	@if [ -z "${command}" ]; then \
 		make go.help;\
@@ -23,38 +33,41 @@ go:
 
 bin/golangci-lint-${GOLANGCI_VERSION}:
 	@mkdir -p bin
-	curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | BINARY=golangci-lint bash -s -- v${GOLANGCI_VERSION}
+	[ ! -e "bin/golangci-lint" ] && curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | BINARY=golangci-lint bash -s -- v${GOLANGCI_VERSION}
 	@mv bin/golangci-lint $@
 
 bin/golangci-lint: bin/golangci-lint-${GOLANGCI_VERSION}
 	@ln -sf golangci-lint-${GOLANGCI_VERSION} bin/golangci-lint
 
+## Run linter go
 .PHONY: go.lint
-go.lint: bin/golangci-lint ## Run linter
-	bin/golangci-lint run
+go.lint: bin/golangci-lint
+	bin/golangci-lint run --config .github/linters/.golangci.yml
 
+## Fix lint violations
 .PHONY: go.fix
-go.fix: bin/golangci-lint ## Fix lint violations
-	bin/golangci-lint run --fix
+go.fix: bin/golangci-lint
+	bin/golangci-lint run --fix --config .github/linters/.golangci.yml
 
-# Run go vet against code
+## Run go vet against code
+.PHONY: go.vet
 go.vet:
 	go vet ./...
-.PHONY: go.vet
 
+## build go package
+.PHONY: go.build
 go.build: bin/goreleaser
 	bin/goreleaser build --snapshot --rm-dist
-.PHONY: go.build
 
-# gofmt and goimports all go files
-go.fmt:
-	gofmt -s -l -w $(PROJECT_BUILD_SRCS)
+## gofmt and goimports all go files
 .PHONY: go.fmt
+go.fmt:
+	gofmt -s -l -w $(GO_FILES)
 
-# setup download and install dependence.
+## setup download and install dependence.
+.PHONY: go.setup
 go.setup:
 	go mod download
 	go mod tidy
 	go mod vendor
 	go generate -v ./...
-.PHONY: go.setup
