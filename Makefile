@@ -31,6 +31,7 @@ GORELEASER_VERSION ?= 0.159.0
 PYENV_NAME="${PROJECT}"
 GIT_IGNORES:=python,node,go,zsh,terraform
 GI:=gi
+GIT_IGNORES_CUSTOM:=bin
 
 # issues reviewers
 REVIEWERS?=luismayta
