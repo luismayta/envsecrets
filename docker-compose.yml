@@ -17,7 +17,6 @@ services:
       - .env
 
   builder:
-    environment: *environment
     build:
       context: .
       dockerfile: provision/docker/builder/Dockerfile
