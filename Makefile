@@ -2,22 +2,6 @@
 # See ./docs/contributing.md
 #
 
-# Command variables
-# Go env variables
-GOPATH	= $(shell go env GOPATH)
-GOBIN	= $(GOPATH)/bin
-
-export GO111MODULE := on
-export GO_VERSION=$(shell go version)
-export BUILT_BY=$(shell whoami)-$(shell hostname)
-
-PKG := github.com/luismayta/envsecrets
-VERSION := $(shell git describe --tags --always --long --dirty)
-BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
-BUILD_DATE := $(shell date +%Y%m%d-%H:%M:%S)
-
-GOLANGCI_VERSION ?= 1.38.0
-
 OS := $(shell uname)
 
 .PHONY: help
@@ -40,11 +24,10 @@ REPOSITORY_OWNER:=${TEAM}
 AWS_VAULT ?= ${TEAM}
 PROJECT := envsecrets
 
-# Compilation variables
-PROJECT_BUILD_SRCS = $(shell find ./ -type f -name '*.go' | grep -v '/vendor/' | sort | uniq)
-
 PYTHON_VERSION=3.8.0
 NODE_VERSION=14.15.5
+GOLANGCI_VERSION ?= 1.38.0
+GORELEASER_VERSION ?= 0.159.0
 PYENV_NAME="${PROJECT}"
 GIT_IGNORES:=python,node,go,zsh,terraform
 GI:=gi
@@ -84,41 +67,41 @@ docker-yarn-run:=$(docker-dev) run --rm --service-ports ${DOCKER_SERVICE_YARN}
 
 include provision/make/*.mk
 
+## Display help for all targets
+.PHONY: help
 help:
 	@echo '${MESSAGE} Makefile for ${PROJECT}'
 	@echo ''
-	@echo 'Usage:'
-	@echo '    environment               create environment with pyenv'
-	@echo '    setup                     install requirements'
-	@echo '    readme                    build README'
-	@echo ''
-	@make alias.help
-	@make docker.help
-	@make docs.help
-	@make test.help
-	@make git.help
-	@make utils.help
-	@make go.help
-	@make python.help
-	@make package.help
-	@make yarn.help
+	@awk '/^.PHONY: / { \
+		msg = match(lastLine, /^## /); \
+			if (msg) { \
+				cmd = substr($$0, 9, 100); \
+				msg = substr(lastLine, 4, 1000); \
+				printf "  ${GREEN}%-30s${RESET} %s\n", cmd, msg; \
+			} \
+	} \
+	{ lastLine = $$0 }' $(MAKEFILE_LIST)
 
 ## Create README.md by building it from README.yaml
+.PHONY: readme
 readme:
 	@gomplate --file $(README_TEMPLATE) \
 		--out $(README_FILE)
 
+## setup dependences of project
+.PHONY: setup
 setup:
 	@echo "==> install packages..."
 	make python.setup
 	make python.precommit
-	@cp -rf provision/git/hooks/prepare-commit-msg .git/hooks/
 	@[ -e ".env" ] || cp -rf .env.example .env
-	make go.setup
 	make yarn.setup
 	make git.setup
+	make go.setup
 	@echo ${MESSAGE_HAPPY}
 
+## setup environment of project
+.PHONY: environment
 environment:
 	@echo "==> loading virtualenv ${PYENV_NAME}..."
 	make python.environment
