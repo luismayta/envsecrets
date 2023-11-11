@@ -14,26 +14,50 @@ email:
 #logo: docs/logo.png
 
 # License of this project
-license: 'LGPL-3.0'
+license: "LGPL-3.0"
 
 # Canonical GitHub repo
 github_repo: luismayta/envsecrets
 
 # Badges to display
 badges:
-  - name: GitHub tag (latest SemVer)
-    image: https://img.shields.io/github/v/tag/luismayta/envsecrets.svg?label=latest&sort=semver
+  - name: Latest Release
+    image: https://img.shields.io/github/release/luismayta/envsecrets
     url: https://github.com/luismayta/envsecrets/releases
   - name: Lint
-    image: https://github.com/luismayta/envsecrets/actions/workflows/lint.yml/badge.svg?branch=develop
-    url: https://github.com/luismayta/envsecrets/actions
-  - name: Issues
-    image: https://img.shields.io/github/issues/luismayta/envsecrets.svg
-    url: https://github.com/luismayta/envsecrets/issues
-  - name: Latest Release
-    image: https://img.shields.io/github/release/luismayta/envsecrets.svg
-    url: https://github.com/luismayta/envsecrets/releases
+    image: https://img.shields.io/github/workflow/status/luismayta/envsecrets/lint-code
+    url: https://github.com/luismayta/envsecrets/actions?workflow=lint-code
+  - name: CI
+    image: https://img.shields.io/github/workflow/status/luismayta/envsecrets/ci
+    url: https://github.com/luismayta/envsecrets/actions?workflow=ci
+  - name: Test
+    image: https://img.shields.io/github/workflow/status/luismayta/envsecrets/test
+    url: https://github.com/luismayta/envsecrets/actions?workflow=test
+  - name: pre-commit
+    image: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
+    url: https://github.com/pre-commit/pre-commit
+  - name: Conventional Commits
+    image: https://img.shields.io/badge/Conventional%20Commits-1.0.0-yellow
+    url: https://conventionalcommits.org
+  - name: KeepAChangelog
+    image: https://img.shields.io/badge/changelog-Keep%20a%20Changelog%20v1.0.0-orange
+    url: https://keepachangelog.com
+
+requirements: |-
+
+  This is a list of plugins that need to be installed previously to enjoy all the goodies of this configuration:
+
+  - [gomplate](https://github.com/hairyhenderson/gomplate)
+  - [python](https://www.python.org)
+  - [taskfile](https://github.com/go-task/task)
 
 # Short description of this project
 description: |-
-  envsecrets load and set env to terminal.
+
+  envsecrets for project
+
+usages:
+  - docs/usage.md
+
+examples:
+  - "docs/examples/common.md"
