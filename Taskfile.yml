@@ -6,6 +6,7 @@ includes:
   confluence: ./provision/task/confluence.yml
   python: ./provision/task/python.yml
   git: ./provision/task/git.yml
+  go: ./provision/task/go.yml
   docs: ./provision/task/docs.yml
   docker: ./provision/task/docker.yml
   version: ./provision/task/version.yml
@@ -103,6 +104,7 @@ tasks:
     run: once
     desc: Execute prettier files
     cmds:
+      - task: go:fmt
       - task: prettier:all
 
   upgrade:
@@ -118,6 +120,7 @@ tasks:
         [ -e ".env" ] || cp -rf .env.example .env
       - task: python:setup
       - task: python:precommit
+      - task: go:setup
       - task: git:setup
 
   test:
