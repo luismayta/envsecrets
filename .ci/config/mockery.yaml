@@ -1,0 +1,7 @@
+with-expecter: false
+outpkg: "mocks"
+
+packages:
+  github.com/luismayta/envsecrets/v1/clients/bitwarden:
+    interfaces:
+      Client:

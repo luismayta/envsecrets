@@ -6,13 +6,13 @@ includes:
   confluence: ./provision/task/confluence.yml
   python: ./provision/task/python.yml
   git: ./provision/task/git.yml
-  go: ./provision/task/go.yml
   docs: ./provision/task/docs.yml
   docker: ./provision/task/docker.yml
   version: ./provision/task/version.yml
   plantuml: ./provision/task/plantuml.yml
   prettier: ./provision/task/prettier.yml
   sonar: ./provision/task/sonar.yml
+  go: ./provision/task/go.yml
   diagrams: ./provision/diagrams/Taskfile.yml
 
 env:
@@ -41,8 +41,11 @@ vars:
   REVIEWERS: luismayta
   PYTHON_VERSION: 3.11.5
   NODE_VERSION: 16.6.1
-  TERRAFORM_VERSION: 1.3.9
+  TERRAFORM_VERSION: 1.4.6
   GIT_IGNORES: python,node,go,zsh,sonar,java,maven,intellij+all,terraform,linux
+  COMMIT: $(git rev-parse HEAD)
+  RELEASE_DIR: ./release
+  DATE: $(date +%s)
   GOLANGCI_VERSION: 1.42.0
   README_FILE: README.md
   GIT_IGNORES_CUSTOM: |
@@ -58,6 +61,7 @@ vars:
     *.zip
     .external_modules
     vendor
+    .DS_Store
 
 tasks:
   default:
@@ -104,14 +108,27 @@ tasks:
     run: once
     desc: Execute prettier files
     cmds:
+      - task: python:fmt
       - task: go:fmt
       - task: prettier:all
+
+  test:
+    run: once
+    desc: Execute of test
+    cmds:
+      - task: go:test
 
   upgrade:
     desc: Execute upgrade packages
     cmds:
       - poetry update
       - poetry run pre-commit autoupdate
+
+  start:
+    run: once
+    desc: Execute project
+    cmds:
+      - go run ./main.go
 
   setup:
     desc: Setup dependences of project
@@ -123,13 +140,21 @@ tasks:
       - task: go:setup
       - task: git:setup
 
-  test:
-    run: once
-    desc: Execute task test all
-    cmds:
-      - task: go:test
-
   environment:
     desc: Setup environment of project
     cmds:
       - task: python:environment
+
+  generate:
+    desc: Generate files
+    cmds:
+      - task: go:mockery
+      - task: go:generate
+
+  help:
+    cmds:
+      - cmd: |
+          echo 'Use "task --list" to get a list of all available tasks with a short description of what they do.'
+          echo 'There are some more tasks used as dependencies for other tasks.'
+          echo 'You can view them with "task --list-all".'
+        silent: true

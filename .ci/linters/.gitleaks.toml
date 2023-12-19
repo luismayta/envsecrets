@@ -164,7 +164,6 @@ title = "gitleaks config"
             '''PASSWORD=XXXXXX''',
         ]
 
-
 [[rules]]
     description = "High Entropy"
     regex = '''[0-9a-zA-Z-_!{}/=]{4,120}'''
@@ -238,9 +237,8 @@ title = "gitleaks config"
     '''^sonar-project.properties$''',
     '''^node_modules/(.*?)$''',
   ]
-  commits = [
-    '''5530b41269a24a0a680e78f0281eb28ef7cee591''',
-  ]
+
+  commits = []
 
 [whitelist]
   description = "image and html allowlists"
