@@ -4,7 +4,7 @@ import (
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
-	"github.com/luismayta/envsecrets/v1/config"
+	"github.com/luismayta/envsecrets/v1/internal/app/config"
 	"github.com/luismayta/envsecrets/v1/internal/errors"
 )
 

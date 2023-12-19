@@ -3,7 +3,7 @@ package provider
 import (
 	"go.uber.org/zap"
 
-	"github.com/luismayta/envsecrets/v1/config"
+	"github.com/luismayta/envsecrets/v1/internal/app/config"
 )
 
 // Zap is a struct of Zap.

@@ -1,7 +1,7 @@
 package log
 
 import (
-	"github.com/luismayta/envsecrets/v1/config"
+	"github.com/luismayta/envsecrets/v1/internal/app/config"
 	"github.com/luismayta/envsecrets/v1/internal/common/log/provider"
 	"github.com/luismayta/envsecrets/v1/internal/errors"
 )

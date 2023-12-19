@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	coreconfig "github.com/luismayta/envsecrets/v1/config"
+	coreconfig "github.com/luismayta/envsecrets/v1/internal/app/config"
 )
 
 func TestConfigLoadEnvSuccess(t *testing.T) {
