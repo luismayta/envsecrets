@@ -20,7 +20,7 @@ func (bw *BW) SetFoldersIDs(foldersNames []string) error {
 	for _, name := range foldersNames {
 		folderID, err := bw.getFolderIDByName(name)
 		if err != nil {
-			return fmt.Errorf("env-secrets error: %v", err)
+			return fmt.Errorf("envsecrets error: %v", err)
 		}
 		bw.foldersIDs = append(bw.foldersIDs, folderID)
 		log.Debugf("Folder ID found: %s\n", folderID)
@@ -31,13 +31,13 @@ func (bw *BW) SetFoldersIDs(foldersNames []string) error {
 func (bw *BW) FetchItems() error {
 	if len(bw.foldersIDs) == 0 {
 		return fmt.Errorf(
-			"env-secrets error: unable to fetch from unknown folder, please set foldersIDs before",
+			"envsecrets error: unable to fetch from unknown folder, please set foldersIDs before",
 		)
 	}
 	for _, id := range bw.foldersIDs {
 		items, err := bw.fetchItemsByFolderID(id)
 		if err != nil {
-			return fmt.Errorf("env-secrets error: %v", err)
+			return fmt.Errorf("envsecrets error: %v", err)
 		}
 		bw.updateValues(items)
 	}
