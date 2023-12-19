@@ -3,7 +3,7 @@ package log
 // import (
 // 	"testing"
 
-// 	"github.com/luismayta/envsecrets/internal/testutil/config"
+// 	"github.com/luismayta/envsecrets/v1/internal/testutil/config"
 // 	"github.com/stretchr/testify/assert"
 // )
 

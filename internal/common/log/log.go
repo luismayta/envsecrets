@@ -1,9 +1,9 @@
 package log
 
 import (
-	"github.com/luismayta/envsecrets/config"
-	"github.com/luismayta/envsecrets/internal/common/log/provider"
-	"github.com/luismayta/envsecrets/internal/errors"
+	"github.com/luismayta/envsecrets/v1/config"
+	"github.com/luismayta/envsecrets/v1/internal/common/log/provider"
+	"github.com/luismayta/envsecrets/v1/internal/errors"
 )
 
 // New initialize a new Log.

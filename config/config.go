@@ -5,8 +5,8 @@ import (
 	"github.com/joho/godotenv"
 	log "github.com/sirupsen/logrus"
 
-	"github.com/luismayta/envsecrets/internal/errors"
-	"github.com/luismayta/envsecrets/internal/version"
+	"github.com/luismayta/envsecrets/v1/internal/errors"
+	"github.com/luismayta/envsecrets/v1/internal/version"
 )
 
 // Config struct field.

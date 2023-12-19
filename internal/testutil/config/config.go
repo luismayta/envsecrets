@@ -3,8 +3,8 @@ package config
 import (
 	"github.com/joho/godotenv"
 
-	coreconfig "github.com/luismayta/envsecrets/config"
-	"github.com/luismayta/envsecrets/internal/errors"
+	coreconfig "github.com/luismayta/envsecrets/v1/config"
+	"github.com/luismayta/envsecrets/v1/internal/errors"
 )
 
 func LoadEnvWithFilename(filename string) (*coreconfig.Config, error) {

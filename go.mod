@@ -1,4 +1,4 @@
-module github.com/luismayta/envsecrets
+module github.com/luismayta/envsecrets/v1
 
 go 1.21.3
 

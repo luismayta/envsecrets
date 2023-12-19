@@ -5,7 +5,7 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/luismayta/envsecrets/internal/app/common"
+	"github.com/luismayta/envsecrets/v1/internal/app/common"
 )
 
 const (

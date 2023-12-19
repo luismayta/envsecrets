@@ -1,11 +1,11 @@
-package main
+package cmd
 
 import (
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
-	"github.com/luismayta/envsecrets/config"
-	"github.com/luismayta/envsecrets/internal/errors"
+	"github.com/luismayta/envsecrets/v1/config"
+	"github.com/luismayta/envsecrets/v1/internal/errors"
 )
 
 var conf = config.Initialize()
@@ -44,6 +44,6 @@ func init() {
 	rootCmd.AddCommand(NewBW())
 }
 
-func main() {
-	rootCmd.Execute()
+func Execute() error {
+	return rootCmd.Execute()
 }
