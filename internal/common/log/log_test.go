@@ -1,22 +1,24 @@
 package log
 
-// import (
-// 	"testing"
+import (
+	"testing"
 
-// 	"github.com/luismayta/envsecrets/v1/internal/testutil/config"
-// 	"github.com/stretchr/testify/assert"
-// )
+	"github.com/stretchr/testify/assert"
 
-// func logForTest() (TracingLogger, func()) {
-// 	conf := config.MustLoadEnvWithFilename("./mocking/zap.env")
+	"github.com/luismayta/envsecrets/v1/internal/testutil/config"
+)
 
-// 	log := NewLog(*conf)
+func logForTest() (TracingLogger, func()) {
+	conf := config.MustLoadEnvWithFilename("./mocking/zap.env")
 
-// 	return log, func() {}
-// }
+	log := NewLog(*conf)
 
-// func TestNewSuccess(t *testing.T) {
-// 	log, tearDown := logForTest()
-// 	defer tearDown()
-// 	assert.IsType(t, &TracingLogger{}, log)
-// }
+	return log, func() {}
+}
+
+func TestNewSuccess(t *testing.T) {
+	log, tearDown := logForTest()
+	defer tearDown()
+	_, ok := log.(TracingLogger)
+	assert.True(t, ok, "log should implement TracingLogger interface")
+}

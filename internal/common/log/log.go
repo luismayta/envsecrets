@@ -17,7 +17,13 @@ func Factory(conf config.Config) (prov TracingLogger) {
 	case "zap":
 		prov = provider.NewZap(conf)
 	default:
-		panic(errors.Errorf(errors.ErrorParseConfig, "unsupported email provider: %s", conf.Log.Provider))
+		panic(
+			errors.Errorf(
+				errors.ErrorParseConfig,
+				"unsupported email provider: %s",
+				conf.Log.Provider,
+			),
+		)
 	}
 	return prov
 }
