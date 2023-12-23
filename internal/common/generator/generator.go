@@ -1,6 +1,8 @@
-package common
+package generator
 
-import "fmt"
+import (
+	"fmt"
+)
 
 // EnvGenerator is used to generate strings that could be eval to set env
 type EnvGenerator interface {

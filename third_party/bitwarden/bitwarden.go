@@ -5,10 +5,10 @@ import (
 
 	log "github.com/sirupsen/logrus"
 
-	"github.com/luismayta/envsecrets/v1/internal/app/common"
-	"github.com/luismayta/envsecrets/v1/internal/app/config"
-	"github.com/luismayta/envsecrets/v1/internal/app/models"
+	"github.com/luismayta/envsecrets/v1/internal/common/exec"
+	"github.com/luismayta/envsecrets/v1/internal/config"
 	"github.com/luismayta/envsecrets/v1/internal/errors"
+	"github.com/luismayta/envsecrets/v1/internal/models"
 )
 
 const bwBinary = "bw"
@@ -83,7 +83,7 @@ func (bw *BW) GenerateEnv() string {
 
 func (bw *BW) getFolderIDByName(name string) (models.FolderID, error) {
 	var results []models.FolderSearch
-	err := common.ExecCLI(bwBinary, []string{"list", "folders", "--search", name}, &results)
+	err := exec.ExecCLI(bwBinary, []string{"list", "folders", "--search", name}, &results)
 	if err != nil {
 		return "", errors.Wrap(err, errors.ErrorInvalidArgument, "failed to get folder ID by name")
 	}
@@ -103,7 +103,7 @@ func (bw *BW) getFolderIDByName(name string) (models.FolderID, error) {
 
 func (bw *BW) fetchItemsByFolderID(id models.FolderID) ([]models.Item, error) {
 	var results []models.Item
-	err := common.ExecCLI(bwBinary, []string{"list", "items", "--folderid", string(id)}, &results)
+	err := exec.ExecCLI(bwBinary, []string{"list", "items", "--folderid", string(id)}, &results)
 	if err != nil {
 		return nil, errors.Wrap(
 			err,

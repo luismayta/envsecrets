@@ -1,7 +1,7 @@
 package models
 
 import (
-	"github.com/luismayta/envsecrets/v1/internal/app/models/bitwarden"
+	"github.com/luismayta/envsecrets/v1/internal/models/bitwarden"
 )
 
 type (

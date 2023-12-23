@@ -1,6 +1,6 @@
 package bitwarden
 
-import "github.com/luismayta/envsecrets/v1/internal/app/models"
+import "github.com/luismayta/envsecrets/v1/internal/models"
 
 type IClient interface {
 	SetFoldersIDs(foldersNames []string) error

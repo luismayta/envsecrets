@@ -1,10 +1,10 @@
-package cmd
+package envsecrets
 
 import (
 	log "github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 
-	"github.com/luismayta/envsecrets/v1/internal/app/config"
+	"github.com/luismayta/envsecrets/v1/internal/config"
 	"github.com/luismayta/envsecrets/v1/internal/errors"
 )
 

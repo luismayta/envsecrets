@@ -19,6 +19,5 @@ func logForTest() (TracingLogger, func()) {
 func TestNewSuccess(t *testing.T) {
 	log, tearDown := logForTest()
 	defer tearDown()
-	_, ok := log.(TracingLogger)
-	assert.True(t, ok, "log should implement TracingLogger interface")
+	assert.NotNil(t, log, "log should not be nil")
 }
