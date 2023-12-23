@@ -204,11 +204,3 @@ task version:minor
 ```{.bash}
 task version:patch
 ```
-
-### Multipass
-
-#### Launch minikube
-
-```bash
-task multipass:launch:minikube
-```

@@ -1,7 +1,11 @@
 # How to use this project
 
-## Replace name project to New Project
+```bash
+task setup
+```
+
+## Start project
 
 ```bash
-agr 'envsecrets' 'new-project'
+task start
 ```
