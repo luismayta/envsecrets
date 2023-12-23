@@ -1,14 +1,14 @@
-package cmd
+package envsecrets
 
 import (
 	"os"
 
 	"github.com/spf13/cobra"
 
-	"github.com/luismayta/envsecrets/v1/clients/bitwarden"
-	"github.com/luismayta/envsecrets/v1/internal/app/common"
-	"github.com/luismayta/envsecrets/v1/internal/app/config"
+	"github.com/luismayta/envsecrets/v1/internal/common/generator"
+	"github.com/luismayta/envsecrets/v1/internal/config"
 	"github.com/luismayta/envsecrets/v1/internal/errors"
+	"github.com/luismayta/envsecrets/v1/third_party/bitwarden"
 )
 
 // NewBW returns a new cobra command for BW
@@ -29,7 +29,7 @@ func NewBW() *cobra.Command {
 			err = bw.FetchItems()
 			errors.Must(err, errors.ErrorUnknown, "Error in FetchItems")
 
-			common.OutputEnv(bw)
+			generator.OutputEnv(bw)
 		},
 	}
 

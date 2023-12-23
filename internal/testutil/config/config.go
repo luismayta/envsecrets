@@ -3,7 +3,7 @@ package config
 import (
 	"github.com/joho/godotenv"
 
-	coreconfig "github.com/luismayta/envsecrets/v1/internal/app/config"
+	coreconfig "github.com/luismayta/envsecrets/v1/internal/config"
 	"github.com/luismayta/envsecrets/v1/internal/errors"
 )
 

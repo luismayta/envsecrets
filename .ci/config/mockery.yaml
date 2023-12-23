@@ -2,7 +2,7 @@ with-expecter: false
 outpkg: "mocks"
 
 packages:
-  github.com/luismayta/envsecrets/v1/clients/bitwarden:
+  github.com/luismayta/envsecrets/v1/third_party/bitwarden:
     interfaces:
       IBW:
       IClient:

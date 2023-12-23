@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	"github.com/luismayta/envsecrets/v1/internal/app/config"
+	"github.com/luismayta/envsecrets/v1/internal/config"
 )
 
 func TestNewClient(t *testing.T) {
