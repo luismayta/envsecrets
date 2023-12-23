@@ -30,10 +30,14 @@ This is a list of plugins that need to be installed previously to enjoy all the 
 
 # How to use this project
 
-## Replace name project to New Project
+```bash
+task setup
+```
+
+## Start project
 
 ```bash
-agr 'envsecrets' 'new-project'
+task start
 ```
 
 ## Examples
@@ -45,7 +49,13 @@ agr 'envsecrets' 'new-project'
 <!-- Include: ./../disclaimer.md -->
 <!-- Include: ac:toc -->
 
-### Common
+## Common
+
+### Install Dependencies
+
+```bash
+task setup
+```
 
 ## Help
 
