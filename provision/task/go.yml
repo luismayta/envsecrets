@@ -104,7 +104,7 @@ tasks:
   generate:
     desc: "Generate code with Wire"
     cmds:
-      - go get -u github.com/google/wire/cmd/wire
+      - go get github.com/google/wire/cmd/wire
       - wire ./...
 
   test:
