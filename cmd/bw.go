@@ -7,6 +7,7 @@ import (
 
 	"github.com/luismayta/envsecrets/v1/clients/bitwarden"
 	"github.com/luismayta/envsecrets/v1/internal/app/common"
+	"github.com/luismayta/envsecrets/v1/internal/app/config"
 	"github.com/luismayta/envsecrets/v1/internal/errors"
 )
 
@@ -20,7 +21,8 @@ func NewBW() *cobra.Command {
 			errors.Must(err, errors.ErrorReadConfig, "Error in beforeChecks")
 		},
 		Run: func(cmd *cobra.Command, args []string) {
-			bw := bitwarden.NewClient()
+			conf := config.Initialize()
+			bw := bitwarden.NewClient(conf)
 			err := bw.SetFoldersIDs(args)
 			errors.Must(err, errors.ErrorReadConfig, "Error in SetFoldersIDs")
 

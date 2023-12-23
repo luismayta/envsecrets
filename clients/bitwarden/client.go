@@ -1,13 +1,9 @@
 package bitwarden
 
-type Client interface {
-	SetFoldersIDs(foldersNames []string) error
+import (
+	"github.com/luismayta/envsecrets/v1/internal/app/config"
+)
 
-	FetchItems() error
-
-	GenerateEnv() string
-}
-
-func NewClient() Client {
-	return &BW{}
+func NewClient(conf *config.Config) IClient {
+	return NewBW(conf)
 }
